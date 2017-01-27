@@ -1,45 +1,45 @@
 
 (function($, undefined){
 
-	function createDemos(){
-		var simple = $("<div id='slider' />").appendTo("body"),
-			date = $("<div id='date' />").appendTo("body"),
-			modifiable = $("<div id='modifiable' />").appendTo("body");
+  function createDemos(){
+    var simple = $("<div id='slider' />").appendTo("body"),
+      date = $("<div id='date' />").appendTo("body"),
+      modifiable = $("<div id='modifiable' />").appendTo("body");
 
-		simple.sliderDemo();
-		date.dateSliderDemo();
-		modifiable.editSliderDemo();
-	}
+    // simple.sliderDemo();
+    date.dateSliderDemo();
+    // modifiable.editSliderDemo();
+  }
 
-	function changeTheme(e){
-		var target = $(e.currentTarget),
-			path = "../css/",
-			theme;
+  function changeTheme(e){
+    var target = $(e.currentTarget),
+      path = "../css/",
+      theme;
 
-		if (target.hasClass("selected")){
-			return
-		}
+    if (target.hasClass("selected")){
+      return
+    }
 
-		$("#themeSelector .selected").removeClass("selected");
+    $("#themeSelector .selected").removeClass("selected");
 
-		theme = target.attr("class");
+    theme = target.attr("class");
 
-		$("#themeSelector ."+theme).addClass("selected");
+    $("#themeSelector ."+theme).addClass("selected");
 
-		$("#themeCSS").attr("href", path + theme + ".css");
+    $("#themeCSS").attr("href", path + theme + ".css");
 
-		setTimeout(function(){
-			$(window).resize();
-		}, 500);
-	}
+    setTimeout(function(){
+      $(window).resize();
+    }, 500);
+  }
 
-	function initTheme(){
-		$("#themeSelector dd, #themeSelector dt").click(changeTheme);
-	}
+  function initTheme(){
+    $("#themeSelector dd, #themeSelector dt").click(changeTheme);
+  }
 
-	$(document).ready(function(){
-		createDemos();
-		initTheme();
-	});
+  $(document).ready(function(){
+    createDemos();
+    initTheme();
+  });
 
 })(jQuery);
