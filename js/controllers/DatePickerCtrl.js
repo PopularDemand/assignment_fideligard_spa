@@ -1,8 +1,9 @@
 fideligard.controller('DatePickerCtrl', ['$scope', function($scope){
   var _addEventListeners = function addEventListeners() {
     var $dp = $('#date-picker');
-    $dp.on('mousedown', function(e) { $scope.dragging = true; })
-       .on('mouseup', function(e) { $scope.dragging = false; })
+    $dp.on('input', function(e) { 
+      $('#date-label').css({ left: (e.target.clientWidth - 15) / 364 * e.target.value })
+    })
   }
 
   _addEventListeners();

@@ -1,17 +1,19 @@
 <div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <p>{{ date }}</p>
+  <div class="col-xs-8 col-xs-offset-2 ">
+    <div id="date-wrapper">
+      <span id="date-label">{{ date }}</span>
+    </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-2">
-    <span class="pull-right">1/01/2016</span>
+  <div class="col-xs-2">
+    <span class="text-right">1/01/2016</span>
   </div>
-  <div class="col-sm-8">
-    <input id="date-picker" type="range" min="0" max="20" step="1" value="5" ng-model="date">
+  <div class="col-xs-8">
+    <input id="date-picker" type="range" min="1" max="365" step="1" value="1" ng-model="date">
   </div>
-  <div class="col-sm-2">
-    <span class="pull-left">12/31/2016</span>
+  <div class="col-xs-2">
+    <span class="text-left">12/31/2016</span>
   </div>
 </div>
 

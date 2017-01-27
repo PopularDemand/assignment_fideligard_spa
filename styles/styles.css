@@ -3,6 +3,14 @@
   border-radius: 0; }
 
 #date-picker {
-  display: inline-block; }
+  display: inline-block;
+  padding: 0; }
+
+#date-wrapper {
+  position: relative;
+  height: 20px; }
+  #date-wrapper #date-label {
+    position: absolute;
+    left: 0; }
 
 /*# sourceMappingURL=styles.css.map */
