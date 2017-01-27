@@ -10,8 +10,7 @@ fideligard.config(['$stateProvider', '$urlRouterProvider',
       abstract: true,
       views: {
         'date-picker@': {
-          template: 'date panel'
-          // templateUrl: 'js/templates/date-picker.html'
+          templateUrl: 'js/templates/date-picker.html'
         },
         'stock-panel@': {
           template: 'stock panel'
