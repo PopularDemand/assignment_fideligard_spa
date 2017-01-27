@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html ng-app="fideligard">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fideligard Investments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+  </head>
+  <body ng-cloak>
+    <a ui-sref="index.portfolio">Portfolio</a>
+    <a ui-sref="index.transactions">Transactions</a>
+    <a ui-sref="index.trade">Trade</a>
+
+    <h1>Main Header<span ui-view="main-header"></span></h1>
+
+    <div ui-view="date-picker"></div>
+    <div ui-view="stock-panel"></div>
+    <div ui-view="main-panel"></div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

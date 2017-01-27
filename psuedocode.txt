@@ -1,0 +1,94 @@
+TRADE
+===========================
+MAIN CONTENT: Trade view - form for buying stock, shows cash and stock info
+  Stock info: symbol, buy or sell option, quantity, date, price, total cost (on form)
+  Other info: Cash available, order status(asking if form is valid)
+
+TRANSACTIONS
+===========================
+MAIN CONTENT:
+  Filter input (by string input)
+  table of transactions (order by date or symbol)
+    - date, symbol, type (buy/sell), quantity bought total price
+
+PORTFOLIO
+===========================
+MAIN CONTENT:
+  2 tables, 1 at top (user stats), other one is stocks owned
+
+  User stats: (of all stocks?)
+    Cost basis, current value (of their stocks), profit/loss, 1 day aggregate, ..7day, ...30 day
+
+  Stocks Owned: (per stock)
+    symbol, quantity, cost basis, current value (of their stocks), profit/loss, 1 day aggregate, ..7day, ...30 day, trade? (button to trade it)
+
+LAYOUT VIEW:
+  - main nav
+  - footer
+
+  - date picker
+  - stocks panel - index of stocks, updates according to date picker
+  - "variable content - main" with dropdown on top right to select between them
+
+ROUTE TREE
+=============================
+main: '@', layout at index.html
+
+
+
+QUERY NOTES
+==============================
+
+http://query.yahooapis.com/v1/public/yql?q=
+select * from   yahoo.finance.historicaldata
+         where  symbol    = "AAPL"             /// stock symbol
+         and    startDate = "2011-09-11"       /// Start date
+         and    endDate   = "2014-02-11"       /// End date    (don't do more than a year at a time)
+&format=json
+&diagnostics=true
+&env=store://datatables.org/alltableswithkeys
+&callback=
+
+QUERY FORMAT:
+https://query.yahooapis.com/v1/public/yql?q=select%20
+*%20from%20yahoo.finance.historicaldata%20where%20symbol%20in%20
+(%225FH.SI%22%2C%22A31.SI%22)                                        // Stock symbol
+%20and%20startDate%20%3D%20%222015-02-19%22                          // Start date
+%20and%20endDate%20%3D%20%222015-02-24                               // end date
+%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=
+
+RESPONSE FORMAT:
+{"query":
+  { "count":252,
+    "created":"2017-01-27T16:45:04Z",
+    "lang":"en-US",
+    "diagnostics":
+      { "url":[{"execution-start-time":"0","execution-stop-time":"2","execution-time":"2","content":"http://www.datatables.org/yahoo/finance/yahoo.finance.historicaldata.xml"},
+                {"execution-start-time":"8","execution-stop-time":"35","execution-time":"27","content":"http://ichart.finance.yahoo.com/table.csv?a=0&b=1&e=31&g=d&c=2014&d=11&f=2014&s=AAPL"},
+                {"execution-start-time":"40","execution-stop-time":"42","execution-time":"2","content":"http://ichart.finance.yahoo.com/table.csv?a=0&b=1&e=31&g=d&c=2014&d=11&f=2014&s=AAPL"}],
+      "publiclyCallable":"true",
+      "cache":[{"execution-start-time":"6","execution-stop-time":"7","execution-time":"1","method":"GET","type":"MEMCACHED","content":"f756d73c9b6c7b01a1d7f9c2ff5f9809"},{"execution-start-time":"39","execution-stop-time":"39","execution-time":"0","method":"GET","type":"MEMCACHED","content":"230584bed0cbcab0d8e6f863db02c098"}],
+      "query":[{"execution-start-time":"7","execution-stop-time":"38","execution-time":"31","params":"{url=[http://ichart.finance.yahoo.com/table.csv?a=0&b=1&e=31&g=d&c=2014&d=11&f=2014&s=AAPL]}","content":"select * from csv(0,1) where url=@url"},{"execution-start-time":"39","execution-stop-time":"45","execution-time":"6","params":"{columnsNames=[Date,Open,High,Low,Close,Volume,Adj_Close],
+      url=[http://ichart.finance.yahoo.com/table.csv?a=0&b=1&e=31&g=d&c=2014&d=11&f=2014&s=AAPL]}",
+      "content":"select * from csv(2,0) where url=@url and columns=@columnsNames"}],
+      "javascript":{"execution-start-time":"5","execution-stop-time":"1310",
+                    "execution-time":"1305","instructions-used":"24196236",
+                    "table-name":"yahoo.finance.historicaldata"},
+      "user-time":"1319",
+      "service-time":"32",
+      "build-version":"2.0.84"
+      },
+    "results":
+      {"quote":[
+        { "Symbol":"AAPL",
+          "Date":"2014-12-31",
+          "Open":"112.82",
+          "High":"113.129997",
+          "Low":"110.209999",
+          "Close":"110.379997",
+          "Volume":"41403400",
+          "Adj_Close":"106.16865"
+        }, ...... ]
+      }
+    }
+}
