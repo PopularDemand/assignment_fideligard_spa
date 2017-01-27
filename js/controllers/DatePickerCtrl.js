@@ -17,6 +17,6 @@ fideligard.controller('DatePickerCtrl', ['$scope', 'dateService', function($scop
 
 
   _addEventListeners();
-  _initializeValues();
+  // _initializeValues();
 
 }]);
