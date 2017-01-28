@@ -14,8 +14,8 @@ fideligard.config(['$stateProvider', '$urlRouterProvider',
           controller: 'DatePickerCtrl'
         },
         'stock-panel@': {
-          template: 'stock panel'
-          // templateUrl: 'js/templates/stock-panel.html'
+          templateUrl: 'js/templates/stock-panel.html',
+          controller: 'StockPanelCtrl'
         }
       }
     })
