@@ -1,7 +1,8 @@
+<h2>{{ dateInfo.date }}</h2>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2 ">
     <div id="date-wrapper">
-      <span id="date-label">{{ date }}</span>
+      <span id="date-label">{{ dateInfo.date | date }}</span>
     </div>
   </div>
 </div>
@@ -10,25 +11,9 @@
     <span class="text-right">1/01/2016</span>
   </div>
   <div class="col-xs-8">
-    <input id="date-picker" type="range" min="1" max="365" step="1" value="1" ng-model="date">
+    <input id="date-picker" type="range" min="1" max="365" step="1" value="1">
   </div>
   <div class="col-xs-2">
     <span class="text-left">12/31/2016</span>
   </div>
 </div>
-
-
-
-
-
-<!-- <div id="slider"></div>
-
-
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-<script src="/vendor/jQRangeSlider-5.7.2/demo/lib/jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
-<script src="/vendor/jQRangeSlider-5.7.2/jQDateRangeSlider-withRuler-min.js"></script>
-<script>
-  //<!--
-  $("#slider").dateRangeSlider();
-  //-->
-<!-- </script> -->

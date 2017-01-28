@@ -4,6 +4,7 @@ fideligard.controller('DatePickerCtrl', ['$scope', 'dateService', function($scop
     $dp.on('input', function(e) {
       $('#date-label').css({ left: (e.target.clientWidth - 15) / 364 * e.target.value });
       dateService.setDateFromStep(e.target.value);
+      console.log("scope date after update", $scope.dateInfo)
     });
   };
 
@@ -13,8 +14,10 @@ fideligard.controller('DatePickerCtrl', ['$scope', 'dateService', function($scop
     $('#date-label').css({ left: ($dp.clientWidth - 15) / 364 * $dp.value })
   }
 
-  $scope.date = dateService.get().date;
-
+  $scope.dateInfo = dateService.get();
+  // $scope.$watch('$scope.date', function(e){
+  //   console.log("changed", e);
+  // })
 
   _addEventListeners();
   _initializeValues();

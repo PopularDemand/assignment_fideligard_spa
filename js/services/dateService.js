@@ -1,41 +1,41 @@
-// fideligard.factory('dateService', function() {
-//   var _date = {
-//     date: new Date('2016-01-01'),
-//     setDate: function(newDate) {
-//       this.date = newDate;
-//     }
-//   };
+fideligard.factory('dateService', function() {
+  var _dateInfo = {
+    date: new Date('2016-01-01')
+  }
 
-//   var get = function(){
-//     return _date
-//   }
+  var get = function(){
+    return _dateInfo
+  }
 
-//   var getDateAsStep = function(start, end, numberSteps){
-//     start = start || new Date('2016-01-01');
-//     end = end || new Date('2016-12-31');
-//     numberSteps = numberSteps || 364;
+  var getDateAsStep = function(start, end, numberSteps){
+    start = start || new Date('2016-01-01');
+    end = end || new Date('2016-12-31');
+    numberSteps = numberSteps || 364;
 
-//     if(_date.date < start) return 1;
-//     if(_date.date > end) return numberSteps + 1;
+    if(_dateInfo.date < start) return 1;
+    if(_dateInfo.date > end) return numberSteps + 1;
 
-//     return Math.floor((numberSteps/(end - start)) * ( _date.date - start))
-//   }
+    return Math.floor((numberSteps/(end - start)) * ( _dateInfo.date - start))
+  }
 
-//   var setDateFromStep = function(step, start, end, numberSteps){
-//     start = start || new Date('2016-01-01');
-//     end = end || new Date('2016-12-31');
-//     numberSteps = numberSteps || 364;
+  var setDateFromStep = function(step, start, end, numberSteps){
+    start = start || new Date('2016-01-01');
+    end = end || new Date('2016-12-31');
+    numberSteps = numberSteps || 364;
 
-//     var millisDate = (((end - start)/numberSteps) * step) + start.getTime();
-//     var newDate = new Date(millisDate);
-//     console.log(_date.date)
-//     _date.setDate(newDate);
-//     console.log('set date', _date.date)
-//   }
+    var millisDate = (((end - start)/numberSteps) * step) + start.getTime();
+    var testDate = _dateInfo.date;
 
-//   return {
-//     get: get,
-//     getDateAsStep: getDateAsStep,
-//     setDateFromStep: setDateFromStep
-//   }
-// });
+    _dateInfo.date.setTime(millisDate)
+    
+    console.log(testDate === _dateInfo.date)
+    console.log("_dateInfo.date is", _dateInfo.date)
+    return _dateInfo
+  }
+
+  return {
+    get: get,
+    getDateAsStep: getDateAsStep,
+    setDateFromStep: setDateFromStep
+  }
+});
