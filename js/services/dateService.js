@@ -10,7 +10,6 @@ fideligard.factory('dateService', function() {
     start = start || new Date('2016-01-01');
     end = end || new Date('2016-12-31');
     numberSteps = numberSteps || 364;
-
     if(_date < start) return 1;
     if(_date > end) return numberSteps + 1;
 
@@ -27,8 +26,9 @@ fideligard.factory('dateService', function() {
 
     _date.setTime(millisDate)
     
-    console.log(testDate === _date)
-    console.log("_date is", _date)
+    // console.log(testDate === _date)
+    // console.log("_date is", _date)
+    // console.log('here')
     return _date
   }
 
