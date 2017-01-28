@@ -1,10 +1,9 @@
 fideligard.factory('dateService', function() {
-  var _dateInfo = {
-    date: new Date('2016-01-01')
-  }
+  var _date =  new Date('2016-01-01')
+
 
   var get = function(){
-    return _dateInfo
+    return _date
   }
 
   var getDateAsStep = function(start, end, numberSteps){
@@ -12,10 +11,10 @@ fideligard.factory('dateService', function() {
     end = end || new Date('2016-12-31');
     numberSteps = numberSteps || 364;
 
-    if(_dateInfo.date < start) return 1;
-    if(_dateInfo.date > end) return numberSteps + 1;
+    if(_date < start) return 1;
+    if(_date > end) return numberSteps + 1;
 
-    return Math.floor((numberSteps/(end - start)) * ( _dateInfo.date - start))
+    return Math.floor((numberSteps/(end - start)) * ( _date - start))
   }
 
   var setDateFromStep = function(step, start, end, numberSteps){
@@ -24,13 +23,13 @@ fideligard.factory('dateService', function() {
     numberSteps = numberSteps || 364;
 
     var millisDate = (((end - start)/numberSteps) * step) + start.getTime();
-    var testDate = _dateInfo.date;
+    // var testDate = _date;
 
-    _dateInfo.date.setTime(millisDate)
+    _date.setTime(millisDate)
     
-    console.log(testDate === _dateInfo.date)
-    console.log("_dateInfo.date is", _dateInfo.date)
-    return _dateInfo
+    console.log(testDate === _date)
+    console.log("_date is", _date)
+    return _date
   }
 
   return {
