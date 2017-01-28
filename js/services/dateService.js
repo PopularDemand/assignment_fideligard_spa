@@ -1,7 +1,6 @@
 fideligard.factory('dateService', function() {
   var _date =  new Date('2016-01-01')
 
-
   var get = function(){
     return _date
   }
@@ -22,13 +21,9 @@ fideligard.factory('dateService', function() {
     numberSteps = numberSteps || 364;
 
     var millisDate = (((end - start)/numberSteps) * step) + start.getTime();
-    // var testDate = _date;
 
     _date.setTime(millisDate)
     
-    // console.log(testDate === _date)
-    // console.log("_date is", _date)
-    // console.log('here')
     return _date
   }
 
