@@ -1,22 +1,21 @@
-<a ng-click='getStocks()'>format the stock!</a>
-<table class="table">
-  <tr>
-    <th>Symbol</th>
-    <th>Price</th>
-    <th>1d</th>
-    <th>7d</th>
-    <th>30d</th>
-    <th>Trade?</th>
-  </tr>
-  <tr ng-repeat='stock in stocks'>
-    <td>{{ stock.symbol }}</td>
-    <td>{{ stock.price | currency}}</td>
-    <td>{{ stock.dayAgo | currency}}</td>
-    <td>{{ stock.weekAgo | currency}}</td>
-    <td>{{ stock.monthAgo | currency}}</td>
-    <td><a ui-sref='index.trade'>trade</a></td>
-  </tr>
-
-  {{ date }}
-
-</table>
+<!-- <a ng-click='getStocks()'>format the stock!</a> -->
+<div id="left-panel">
+  <table class="table table-striped stocks-panel">
+    <tr>
+      <th>Symbol</th>
+      <th>Price</th>
+      <th>1d</th>
+      <th>7d</th>
+      <th>30d</th>
+      <th>Trade?</th>
+    </tr>
+    <tr ng-repeat='stock in stocks'>
+      <td>{{ stock.symbol }}</td>
+      <td>{{ stock.price | currency}}</td>
+      <td>{{ stock.dayAgo | currency}}</td>
+      <td>{{ stock.weekAgo | currency}}</td>
+      <td>{{ stock.monthAgo | currency}}</td>
+      <td><a ui-sref='index.trade'>trade</a></td>
+    </tr>
+  </table>
+</div>
