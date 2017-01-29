@@ -1,16 +1,21 @@
-fideligard.controller('StockPanelCtrl', ['$scope', '$http', 'stockService', function($scope, $http, stockService) {
+fideligard.controller('StockPanelCtrl', ['$scope', '$http', 'stockService', 'dateService', function($scope, $http, stockService, dateService) {
   
-  stockService.getStocks().then(function(stocks) {
+  $scope.stocks = [];
+  $scope.dateInfo = dateService.get();
+  
+  stockService.getStocks($scope.dateInfo.date).then(function(stocks) {
     $scope.stocks = stocks;
   });
 
-  // TODO start here:
-  // Need to capture _date from date service and
-  // pass that into stocks
+  $scope.$watch('dateInfo.date', function(oldVal, newVal, scope) {
+    scope.getStocks();
+  }, true)
 
   $scope.getStocks = function() {
     stockService.getStocks().then(function(stocks) {
-      $scope.stocks = stocks;
+      if (stocks !== $scope.stocks) {
+        $scope.stocks = stocks;
+      }
     });
   }
 

@@ -4,24 +4,24 @@ fideligard.factory('stockService', ['$http', 'dateService', function($http, date
   var MILLIS_IN_DAY = 86400000;
   var formattedStocks;
 
-  var getStocks = function() {
+  var getStocks = function(date) {
     return $http.get('/data/stocks.json').then(function(response) {
       stocks = response.data.query.results.quote;
       stocks = _.groupBy(stocks, "Symbol");
       formattedStocks = [];
       for (stock in stocks) {
-        formattedStocks.push(_formatOneStock(stocks[stock]));
+        formattedStocks.push(_formatOneStock(stocks[stock], date));
       }
       angular.copy(formattedStocks, _stocks);
       return _stocks;
     })
   };
 
-  var _formatOneStock = function(historicalDaily) {
+  var _formatOneStock = function(historicalDaily, date) {
     var dayAgo, weekAgo, monthAgo,
         price = 'NA', dayAgoPrice = 'NA',
         weekAgoPrice = 'NA', monthAgoPrice = 'NA',
-        date = new Date(dateService.get());
+        date = date || new Date(dateService.get().date);
 
     // Set day to friday if it is a weekend day
     if (date.getDay() === 6) {
