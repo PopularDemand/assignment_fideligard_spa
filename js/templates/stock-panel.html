@@ -1,4 +1,4 @@
-<a ng-click='formatOneStock()'>format the stock!</a>
+<a ng-click='getStocks()'>format the stock!</a>
 <table class="table">
   <tr>
     <th>Symbol</th>
@@ -9,7 +9,12 @@
     <th>Trade?</th>
   </tr>
   <tr ng-repeat='stock in stocks'>
-    <td>{{ stock }}</td>
+    <td>{{ stock.symbol }}</td>
+    <td>{{ stock.price | currency}}</td>
+    <td>{{ stock.dayAgo | currency}}</td>
+    <td>{{ stock.weekAgo | currency}}</td>
+    <td>{{ stock.monthAgo | currency}}</td>
+    <td><a ui-sref='index.trade'>trade</a></td>
   </tr>
 
 </table>

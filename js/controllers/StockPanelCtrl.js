@@ -4,8 +4,14 @@ fideligard.controller('StockPanelCtrl', ['$scope', '$http', 'stockService', func
     $scope.stocks = stocks;
   });
 
-  $scope.formatOneStock = function() {
-    stockService.formatOneStock($scope.stocks);
+  // TODO start here:
+  // Need to capture _date from date service and
+  // pass that into stocks
+
+  $scope.getStocks = function() {
+    stockService.getStocks().then(function(stocks) {
+      $scope.stocks = stocks;
+    });
   }
 
 }])
