@@ -1,20 +1,24 @@
-fideligard.factory('stockService', ['$http', 'dateService', function($http, dateService) {
+fideligard.factory('stockService', ['$http', 'dateService', 'helpers', function($http, dateService, helpers) {
 
-  var _stocks = [];
+  var _stocks = [], _stocksBySymbol = {};
   var MILLIS_IN_DAY = 86400000;
   var formattedStocks;
 
   var getStocks = function(date) {
     return $http.get('/data/stocks.json').then(function(response) {
       stocks = response.data.query.results.quote;
-      stocks = _.groupBy(stocks, "Symbol");
+      _stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
       formattedStocks = [];
-      for (stock in stocks) {
-        formattedStocks.push(_formatOneStock(stocks[stock], date));
+      for (stock in _stocksBySymbol) {
+        formattedStocks.push(_formatOneStock(_stocksBySymbol[stock], date));
       }
       angular.copy(formattedStocks, _stocks);
       return _stocks;
     })
+  };
+
+  var getStock = function(symbol) {
+    return _stocksBySymbol[symbol];
   };
 
   var _formatOneStock = function(historicalDaily, date) {
@@ -35,10 +39,10 @@ fideligard.factory('stockService', ['$http', 'dateService', function($http, date
     monthAgo = new Date(date - 30 * MILLIS_IN_DAY);
 
     historicalDaily.forEach(function(day) {
-      if (_sameDate(day.Date, date)) price = day.Close
-      if (_sameDate(day.Date, dayAgo)) dayAgoPrice = day.Close;
-      if (_sameDate(day.Date, weekAgo)) weekAgoPrice = day.Close;
-      if (_sameDate(day.Date, monthAgo)) monthAgoPrice = day.Close;
+      if (helpers.sameDate(day.Date, date)) price = day.Close
+      if (helpers.sameDate(day.Date, dayAgo)) dayAgoPrice = day.Close;
+      if (helpers.sameDate(day.Date, weekAgo)) weekAgoPrice = day.Close;
+      if (helpers.sameDate(day.Date, monthAgo)) monthAgoPrice = day.Close;
     });
 
     stock = {
@@ -51,15 +55,15 @@ fideligard.factory('stockService', ['$http', 'dateService', function($http, date
     return stock;
   }
 
-  var _sameDate = function(day, currentDay) {
-    return _normalizeDate(day) == _normalizeDate(currentDay)
-  }
+  // var _sameDate = function(day, currentDay) {
+  //   return _normalizeDate(day) == _normalizeDate(currentDay)
+  // }
 
-  // this is only for pre-comparison formatting. do not alter any objs here
-  var _normalizeDate = function(date) {
-    var d = new Date(date);
-    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + (d.getDate() + 1);
-  };
+  // // this is only for pre-comparison formatting. do not alter any objs here
+  // var _normalizeDate = function(date) {
+  //   var d = new Date(date);
+  //   return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + (d.getDate() + 1);
+  // };
 
   // TODO Not in use
   // var _withinDateRange = function(day, endDate, daysAgo) {
@@ -71,6 +75,7 @@ fideligard.factory('stockService', ['$http', 'dateService', function($http, date
   // }
 
   return {
-    getStocks: getStocks
+    getStocks: getStocks,
+    getStock: getStock
   }
 }])

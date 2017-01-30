@@ -1,0 +1,38 @@
+<form>
+  <table>
+    <tr>
+      <th>Symbol:</th>
+      <td>{{ stock.Symbol }}</td>
+    </tr>
+    <tr>
+      <th>Buy/Sell</th>
+      <td>
+        <select>
+          <option value="buy">Buy</option>
+          <option value="sell">Sell</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Quantity</th>
+      <td>
+        <input type="number" ng-model='quantity'>
+      </td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td>
+        <input type="date">
+      </td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td>{{ stock.Close }}</td>
+    </tr>
+    <tr>
+      <th>Cost</th>
+      <td>{{ calculateCost() }}</td>
+    </tr>
+  </table>
+  <input type="submit" class='btn btn-block' value='Place Order'>
+</form>

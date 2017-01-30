@@ -15,7 +15,7 @@
       <td>{{ stock.dayAgo | currency}}</td>
       <td>{{ stock.weekAgo | currency}}</td>
       <td>{{ stock.monthAgo | currency}}</td>
-      <td><a ui-sref='index.trade'>trade</a></td>
+      <td><a ui-sref='index.trade({ symbol: stock.symbol })'>trade</a></td>
     </tr>
   </table>
 </div>

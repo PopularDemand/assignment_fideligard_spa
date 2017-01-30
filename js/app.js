@@ -35,11 +35,16 @@ fideligard.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('index.trade', {
-        url: 'trade',
+        url: 'trade/:symbol',
         views: {
           'main-panel@': {
-            template: 'trade main panel'
+            controller: 'TradeCtrl',
+            templateUrl: 'js/templates/trade.html'
           },
         }
       })
 }]);
+
+fideligard.run(function($rootScope){
+  $rootScope.$on("$stateChangeError", console.log.bind(console));
+});
