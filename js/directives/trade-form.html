@@ -1,4 +1,4 @@
-<form>
+<form ng-submit='placeOrder()' name='form'>
   <table>
     <tr>
       <th>Symbol:</th>
@@ -7,7 +7,7 @@
     <tr>
       <th>Buy/Sell</th>
       <td>
-        <select>
+        <select ng-model='trade.type' name='type' required>
           <option value="buy">Buy</option>
           <option value="sell">Sell</option>
         </select>
@@ -16,13 +16,13 @@
     <tr>
       <th>Quantity</th>
       <td>
-        <input type="number" ng-model='quantity'>
+        <input type="number" ng-model='trade.quantity' name='quantity' required>
       </td>
     </tr>
     <tr>
       <th>Date</th>
       <td>
-        <input type="date">
+        <input type="date" ng-model='dateInfo.date' name='date'>
       </td>
     </tr>
     <tr>
@@ -34,5 +34,5 @@
       <td>{{ calculateCost() }}</td>
     </tr>
   </table>
-  <input type="submit" class='btn btn-block' value='Place Order'>
+  <input type="submit" class='btn btn-block btn-success' value='Place Order'>
 </form>

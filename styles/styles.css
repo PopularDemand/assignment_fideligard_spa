@@ -1,18 +1,40 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  background-color: #94bf8b; }
+
+.content-panel {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px #888888; }
+  .content-panel .panel-heading {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    font-variant: small-caps; }
+
 /*MAIN LAYOUT*/
 #main-nav {
-  border-radius: 0; }
+  border-radius: 0;
+  background-color: #111;
+  border: none;
+  border-bottom: 1px solid #eee; }
 
-#date-picker {
-  display: inline-block;
-  padding: 0; }
-
-#date-wrapper {
-  position: relative;
-  height: 20px; }
-  #date-wrapper #date-label {
-    position: absolute;
-    left: 0;
-    white-space: pre; }
+#datepicker-panel {
+  margin-bottom: 44px; }
+  #datepicker-panel #date-picker {
+    display: inline-block;
+    padding: 0; }
+  #datepicker-panel #date-wrapper {
+    position: relative;
+    height: 20px; }
+    #datepicker-panel #date-wrapper #date-label {
+      position: absolute;
+      left: 0;
+      white-space: pre; }
 
 #left-panel .stocks-panel {
   font-size: 10px; }

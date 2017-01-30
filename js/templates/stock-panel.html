@@ -1,5 +1,12 @@
 <!-- <a ng-click='getStocks()'>format the stock!</a> -->
-<div id="left-panel">
+<div id="left-panel" class='content-panel'>
+  <h2 class='panel-heading'>Stocks</h2>
+  <select id="" class="pull-right">
+    <option value="1">option 1</option>
+  </select>
+  <label>Filter: 
+    <input type="text" ng-model='tickerFilter'>
+  </label>
   <table class="table table-striped stocks-panel">
     <tr>
       <th>Symbol</th>
@@ -9,7 +16,7 @@
       <th>30d</th>
       <th>Trade?</th>
     </tr>
-    <tr ng-repeat='stock in stocks'>
+    <tr ng-repeat='stock in stocks | filter : tickerFilter | limitTo : 15'>
       <td>{{ stock.symbol }}</td>
       <td>{{ stock.price | currency}}</td>
       <td>{{ stock.dayAgo | currency}}</td>

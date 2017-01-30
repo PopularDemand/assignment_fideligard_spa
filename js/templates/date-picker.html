@@ -1,20 +1,23 @@
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2 ">
-    <div id="date-wrapper">
-      <span id="date-label">{{ dateInfo.date | date }}</span>
+<div id="datepicker-panel" class='content-panel'>
+  <h3 class='panel-heading'>Pick a Date</h3>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 ">
+      <div id="date-wrapper">
+        <span id="date-label">{{ dateInfo.date | date }}</span>
+      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <span class="text-right">1/01/2016</span>
+    </div>
+    <div class="col-xs-8">
+      <input id="date-picker" type="range" min="1" max="365" step="1" default-value="1" ng-model="dateValue">
+    </div>
+    <div class="col-xs-2">
+      <span class="text-left">12/31/2016</span>
+    </div>
+  </div>
+  <input type="text" ng-model='dateValue' ng-change='setDate()'>
+  <!-- <a ng-click="getScope()">click for scope</a> -->
 </div>
-<div class="row">
-  <div class="col-xs-2">
-    <span class="text-right">1/01/2016</span>
-  </div>
-  <div class="col-xs-8">
-    <input id="date-picker" type="range" min="1" max="365" step="1" default-value="1" ng-model="dateValue">
-  </div>
-  <div class="col-xs-2">
-    <span class="text-left">12/31/2016</span>
-  </div>
-</div>
-<input type="text" ng-model='dateValue' ng-change='setDate()'>
-<!-- <a ng-click="getScope()">click for scope</a> -->

@@ -1,13 +1,32 @@
-fideligard.factory('stockService', ['$http', 'dateService', 'helpers', function($http, dateService, helpers) {
+fideligard.factory('stockService', ['$http', 'dateService', 'helpers', '_', function($http, dateService, helpers, _) {
 
   var _stocks = [], _stocksBySymbol = {};
   var MILLIS_IN_DAY = 86400000;
   var formattedStocks;
 
+  // var getStocks = function(date) {
+  //   return $http.get('/data/stocks.json').then(function(response) {
+  //     stocks = response.data.query.results.quote;
+  //     _stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
+      // formattedStocks = [];
+      // for (stock in _stocksBySymbol) {
+      //   formattedStocks.push(_formatOneStock(_stocksBySymbol[stock], date));
+      // }
+      // angular.copy(formattedStocks, _stocks);
+      // return _stocks;
+  //   })
+  // };
+
   var getStocks = function(date) {
-    return $http.get('/data/stocks.json').then(function(response) {
-      stocks = response.data.query.results.quote;
-      _stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
+    return $http.get('/data/data.json').then(function(response) {
+      stocks = response.data.datatable.data.map(function(dailyTicker){
+        return {
+          Symbol: dailyTicker[0],
+          Date: dailyTicker[1],
+          Close: dailyTicker[5]
+        }
+      })
+      stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
       formattedStocks = [];
       for (stock in _stocksBySymbol) {
         formattedStocks.push(_formatOneStock(_stocksBySymbol[stock], date));
@@ -15,7 +34,7 @@ fideligard.factory('stockService', ['$http', 'dateService', 'helpers', function(
       angular.copy(formattedStocks, _stocks);
       return _stocks;
     })
-  };
+  }
 
   var getStock = function(symbol) {
     return _stocksBySymbol[symbol];

@@ -2,6 +2,7 @@ fideligard.controller('TradeCtrl', ['$scope', '$stateParams', 'stockService', 'd
 
   $scope.stockHistory = stockService.getStock($stateParams.symbol);
   $scope.dateInfo = dateService.get();
+  $scope.selectedContent = 'trade';
   $scope.stock;
 
   $scope.$watch('dateInfo.date', function(oldVal, newVal, scope) {

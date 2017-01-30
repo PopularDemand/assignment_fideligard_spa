@@ -30,8 +30,9 @@ fideligard.config(['$stateProvider', '$urlRouterProvider',
         url: 'transactions',
         views: {
           'main-panel@': {
-            template: 'transactions main panel'
-          },
+            controller: 'TransactionCtrl',
+            templateUrl: 'js/templates/transactions.html'
+          }
         }
       })
       .state('index.trade', {

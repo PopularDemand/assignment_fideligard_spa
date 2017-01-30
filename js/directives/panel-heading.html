@@ -1,0 +1,10 @@
+
+<h2 class='panel-heading'>{{ selected }}</h2>
+<select class="pull-right"
+        ng-model='selectedContent'
+        ng-change='redirect()'>
+  <option ng-repeat='option in contentOptions'
+          value='{{option.sref}}'>
+    {{ capitalize(option.name) }}
+  </option>
+</select>

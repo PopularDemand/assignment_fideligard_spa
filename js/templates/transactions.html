@@ -1,0 +1,25 @@
+<!-- <a ng-click='getStocks()'>format the stock!</a> -->
+<div id="transactions" class='content-panel'>
+  <panel-heading selected='selectedContent'></panel-heading>
+  <label>Filter: 
+    <input type="text" ng-model='transactionFilter'>
+  </label>
+  <table class="table table-striped stocks-panel">
+    <tr>
+      <th>Date</th>
+      <th>Symbol</th>
+      <th>Type</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <td>01-04-2017</td>
+      <td>AER</td>
+      <td>BUY</td>
+      <td>6000</td>
+      <td>60000</td>
+    </tr>
+    <tr ng-repeat='transaction in transactions | filter : transactionFilter | limitTo : 15'>
+    </tr>
+  </table>
+</div>

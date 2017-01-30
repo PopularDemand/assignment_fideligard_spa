@@ -1,17 +1,19 @@
-<div id="trade-panel">
+<div id="trade-panel" class='content-panel'>
   <div class="heading row">
-    <h2>Trade</h2>
-    <select id="" class="pull-right">
-      <option value="1">option 1</option>
-    </select>
+    <div class="col-xs-12">
+      <panel-heading selected='selectedContent'></panel-heading>
+    </div>
   </div>
   <div class="row main-content">
     <div class="col-xs-6">
-      <trade-form stock='stock'></trade-form>
+      <trade-form stock='stock' date-info='dateInfo'></trade-form>
     </div>
 
     <div class="col-xs-6">
-      
+    <h2>Cash Available:</h2>
+    <p>12345.67</p>
+    <h2>Order Status</h2>
+    <p>Valid</p>
     </div>
   </div>
 </div>
