@@ -6,14 +6,19 @@
   </div>
   <div class="row main-content">
     <div class="col-xs-6">
-      <trade-form stock='stock' date-info='dateInfo'></trade-form>
+      <trade-form stock='stock' date-info='dateInfo' trade-validity='tradeValidity'></trade-form>
     </div>
 
     <div class="col-xs-6">
       <h2>Cash Available:</h2>
       <p>12345.67</p>
-      <h2>Order Status</h2>
-      <p>Valid</p>
+      <h2>Order Status:</h2>
+      <p ng-if='!tradeValidity.messages.length'>In progress</p>
+      <p ng-if='tradeValidity.messages.length'>
+        <span ng-repeat='message in tradeValidity.messages'>
+          {{ message }}
+        </span>
+      </p>
     </div>
   </div>
 </div>

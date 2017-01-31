@@ -4,6 +4,9 @@ fideligard.controller('TradeCtrl', ['$scope', '$stateParams', 'stockService', 'd
   $scope.dateInfo = dateService.get();
   $scope.selectedContent = 'trade';
   $scope.stock;
+  $scope.tradeValidity = {
+    messages: []
+  }
 
   $scope.$watch('dateInfo.date', function(oldVal, newVal, scope) {
     scope.getPrice();
