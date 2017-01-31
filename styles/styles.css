@@ -2,7 +2,7 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #94bf8b; }
+  background-color: #dae9d7; }
 
 .content-panel {
   background-color: #eee;
@@ -19,9 +19,15 @@ body {
 /*MAIN LAYOUT*/
 #main-nav {
   border-radius: 0;
-  background-color: #111;
+  background-color: #3e6337;
   border: none;
   border-bottom: 1px solid #eee; }
+  #main-nav .navbar-brand {
+    font-size: 32px;
+    color: #eee;
+    letter-spacing: -.05em;
+    font-weight: 800;
+    text-transform: uppercase; }
 
 #datepicker-panel {
   margin-bottom: 44px; }

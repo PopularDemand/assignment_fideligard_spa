@@ -1,8 +1,8 @@
-fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', 'stockService', 'dateService', function($scope, transactionService, stockService, dateService) {
+fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', 'stockService', 'dateService', 'portfolioService',  function($scope, transactionService, stockService, dateService, portfolioService) {
   $scope.selectedContent = 'portfolio';
-  $scope.portfolioStats = {};
-  $scope.ownedStocks = [];
   $scope.dateInfo = dateService.get();
+  $scope.portfolioStats = portfolioService.getStats($scope.dateInfo.date);
+  $scope.ownedStocks = [];
 
   $scope._addHistoricalInfo = function(transaction) {
     var info = stockService.getFormattedStock(transaction.symbol, $scope.dateInfo.date)
@@ -21,9 +21,8 @@ fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', 'stockSe
   }, true);
 
   $scope.$watch('dateInfo.date', function(oldVal, newVal, scope) {
-    console.log('here')
-    console.log($scope.dateInfo.date)
     $scope.updateTransactions();
+    $scope.portfolioStats = portfolioService.getStats($scope.dateInfo.date);
   }, true)
   
 
@@ -67,5 +66,9 @@ fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', 'stockSe
           symbol: 'AAPL',
           type: 'buy'
     })
+  }
+
+  $scope.getStocks = function() {
+    $scope.yep = portfolioService.getStocks($scope.dateInfo.date)
   }
 }])

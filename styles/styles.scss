@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #94bf8b;
+  background-color: #dae9d7;
 }
 
 .content-panel {
@@ -24,9 +24,16 @@ body {
 
 #main-nav {
   border-radius: 0;
-  background-color: #111;
+  background-color: #3e6337;
   border: none;
   border-bottom: 1px solid #eee;
+  .navbar-brand {
+    font-size: 32px;
+    color: #eee;
+    letter-spacing: -.05em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
 }
 
 // DATE PICKER
