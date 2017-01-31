@@ -14,17 +14,14 @@ fideligard.directive('tradeForm', ['$state', 'transactionService', function($sta
           return Number(scope.stock.Close) * scope.trade.quantity;
       }
       scope.placeOrder = function() {
-        console.log(scope.form.$valid)
         if (scope.form.$valid) {
           scope.trade.date = scope.dateInfo.date;
-          scope.trade.symbol = scope.stock.symbol;
+          scope.trade.symbol = scope.stock.Symbol;
           scope.trade.price = scope.calculateCost();
           transactionService.addTransaction(scope.trade);
+          $state.go('index.transactions');
         }
-      }
-      scope.goToTransactions = function() {
-        $state.go('index.transactions')
-      }
+      };
     }
   }
 }])

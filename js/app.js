@@ -23,27 +23,28 @@ fideligard.config(['$stateProvider', '$urlRouterProvider',
       url: 'portfolio',
       views: {
         'main-panel@': {
-          template: 'portfolio main panel'
+          controller: 'PortfolioCtrl',
+          templateUrl: 'js/templates/portfolio.html'
         }
       }})
-      .state('index.transactions', {
-        url: 'transactions',
-        views: {
-          'main-panel@': {
-            controller: 'TransactionCtrl',
-            templateUrl: 'js/templates/transactions.html'
-          }
+    .state('index.transactions', {
+      url: 'transactions',
+      views: {
+        'main-panel@': {
+          controller: 'TransactionCtrl',
+          templateUrl: 'js/templates/transactions.html'
         }
-      })
-      .state('index.trade', {
-        url: 'trade/:symbol',
-        views: {
-          'main-panel@': {
-            controller: 'TradeCtrl',
-            templateUrl: 'js/templates/trade.html'
-          },
-        }
-      })
+      }
+    })
+    .state('index.trade', {
+      url: 'trade/:symbol',
+      views: {
+        'main-panel@': {
+          controller: 'TradeCtrl',
+          templateUrl: 'js/templates/trade.html'
+        },
+      }
+    })
 }]);
 
 fideligard.run(function($rootScope){

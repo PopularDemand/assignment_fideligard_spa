@@ -58,7 +58,7 @@ fideligard.factory('stockService', ['$http', 'dateService', 'helpers', '_', func
     monthAgo = new Date(date - 30 * MILLIS_IN_DAY);
 
     historicalDaily.forEach(function(day) {
-      if (helpers.sameDate(day.Date, date)) price = day.Close
+      if (helpers.sameDate(day.Date, date)) price = day.Close;
       if (helpers.sameDate(day.Date, dayAgo)) dayAgoPrice = day.Close;
       if (helpers.sameDate(day.Date, weekAgo)) weekAgoPrice = day.Close;
       if (helpers.sameDate(day.Date, monthAgo)) monthAgoPrice = day.Close;

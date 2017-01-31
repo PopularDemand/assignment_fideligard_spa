@@ -1,19 +1,21 @@
 fideligard.factory('transactionService', [function() {
-  var _transactions = [];
+  var _transactionsInfo = {
+    all: []
+  };
   var _id = 1;
 
   var addTransaction = function(transaction) {
     transaction.id = _id++;
-    _transactions.push(transaction);
-    console.log(_transactions)
+    _transactionsInfo.all.push(transaction);
+    console.log(_transactionsInfo)
   };
 
-  var getAll = function() {
-    return _transactions;
+  var getInfo = function() {
+    return _transactionsInfo;
   };
 
   return {
     addTransaction: addTransaction,
-    getAll: getAll
+    getInfo: getInfo
   }
 }])
