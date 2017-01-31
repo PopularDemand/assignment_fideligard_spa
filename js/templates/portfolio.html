@@ -2,16 +2,41 @@
   <div class="heading row">
     <div class="col-xs-12">
       <panel-heading selected='selectedContent'></panel-heading>
+      <a ng-click='populateTables()'>populate</a>
     </div>
   </div>
 
-  <table class="table table-striped stocks-panel">
+  <table class="table table-striped portfolio-stats-table">
+    <thead>
+      <tr>
+        <th>Cash Basis</th>
+        <th>Current Value</th>
+        <th>Profit/Loss</th>
+        <th>1d</th>
+        <th>7d</th>
+        <th>30d</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td ng-repeat='(stat, value) in portfolioStats'>
+          {{ value | currency }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-striped">
     <tr>
-      <th>Date</th>
       <th>Symbol</th>
-      <th>Type</th>
       <th>Quantity</th>
-      <th>Price</th>
+      <th>Cash Basis</th>
+      <th>Current Value</th>
+      <th>Profit/Loss</th>
+      <th>Current Price</th>
+      <th>1d</th>
+      <th>7d</th>
+      <th>30d</th>
     </tr>
     <tr>
       <td>01-04-2017</td>
