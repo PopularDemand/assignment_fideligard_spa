@@ -1,9 +1,18 @@
-fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', function($scope, transactionService) {
+fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', 'stockService', 'dateService', function($scope, transactionService, stockService, dateService) {
   $scope.selectedContent = 'portfolio';
   $scope.portfolioStats = {};
+  $scope.ownedStocks = [];
+  $scope.dateInfo = dateService.get();
 
+  $scope._addHistoricalInfo = function(transaction) {
+    var info = stockService.getFormattedStock(transaction.symbol, $scope.dateInfo.date)
+    transaction.historicalInfo = info;
+  }
   $scope.updateTransactions = function() {
     $scope.transactions = transactionService.getInfo();
+    $scope.transactions.all.forEach(function(transaction) {
+      $scope._addHistoricalInfo(transaction);
+    })
   };
   $scope.updateTransactions();
 
@@ -11,6 +20,19 @@ fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', function
     $scope.updateTransactions();
   }, true);
 
+  $scope.$watch('dateInfo.date', function(oldVal, newVal, scope) {
+    console.log('here')
+    console.log($scope.dateInfo.date)
+    $scope.updateTransactions();
+  }, true)
+  
+
+  $scope.currentProfit = function(transaction) {
+    return (transaction.historicalInfo.price * transaction.quantity) - transaction.price
+  }
+
+
+  // Development
   $scope.populateTables = function() {
     $scope.portfolioStats.cash = 123456;
     $scope.portfolioStats.value = 456789;
@@ -42,7 +64,7 @@ fideligard.controller('PortfolioCtrl', ['$scope', 'transactionService', function
           id: 3,
           price: 234.44,
           quantity: 43,
-          symbol: 'GMO',
+          symbol: 'AAPL',
           type: 'buy'
     })
   }

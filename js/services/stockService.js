@@ -1,31 +1,11 @@
-fideligard.factory('stockService', ['$http', 'dateService', 'helpers', '_', function($http, dateService, helpers, _) {
+fideligard.factory('stockService', ['$http', '$q', 'dateService', 'helpers', '_', function($http, $q, dateService, helpers, _) {
 
   var _stocks = [], _stocksBySymbol = {};
   var MILLIS_IN_DAY = 86400000;
-  var formattedStocks;
-
-  // var getStocks = function(date) {
-  //   return $http.get('/data/stocks.json').then(function(response) {
-  //     stocks = response.data.query.results.quote;
-  //     _stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
-      // formattedStocks = [];
-      // for (stock in _stocksBySymbol) {
-      //   formattedStocks.push(_formatOneStock(_stocksBySymbol[stock], date));
-      // }
-      // angular.copy(formattedStocks, _stocks);
-      // return _stocks;
-  //   })
-  // };
 
   var getStocks = function(date) {
     return $http.get('/data/data.json').then(function(response) {
-      stocks = response.data.datatable.data.map(function(dailyTicker){
-        return {
-          Symbol: dailyTicker[0],
-          Date: dailyTicker[1],
-          Close: dailyTicker[5]
-        }
-      })
+      stocks = response.data.datatable.data.map(_removeExtraData);
       stocksBySymbol = angular.copy(_.groupBy(stocks, "Symbol"), _stocksBySymbol);
       formattedStocks = [];
       for (stock in _stocksBySymbol) {
@@ -39,6 +19,19 @@ fideligard.factory('stockService', ['$http', 'dateService', 'helpers', '_', func
   var getStock = function(symbol) {
     return _stocksBySymbol[symbol];
   };
+
+  // used in portfolio ctrl
+  var getFormattedStock = function(symbol, date) {
+    return _formatOneStock(_stocksBySymbol[symbol], date)
+  }
+
+  var _removeExtraData = function(dailyTicker){
+    return {
+      Symbol: dailyTicker[0],
+      Date: dailyTicker[1],
+      Close: dailyTicker[5]
+    }
+  }
 
   var _formatOneStock = function(historicalDaily, date) {
     var dayAgo, weekAgo, monthAgo,
@@ -74,27 +67,9 @@ fideligard.factory('stockService', ['$http', 'dateService', 'helpers', '_', func
     return stock;
   }
 
-  // var _sameDate = function(day, currentDay) {
-  //   return _normalizeDate(day) == _normalizeDate(currentDay)
-  // }
-
-  // // this is only for pre-comparison formatting. do not alter any objs here
-  // var _normalizeDate = function(date) {
-  //   var d = new Date(date);
-  //   return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + (d.getDate() + 1);
-  // };
-
-  // TODO Not in use
-  // var _withinDateRange = function(day, endDate, daysAgo) {
-  //   var beginDate = Date.parse(endDate) - daysAgo * MILLIS_IN_DAY;
-  //   beginDate = new Date(beginDate);
-  //   day = new Date(day);
-
-  //   return day >= beginDate && day <= endDate;
-  // }
-
   return {
     getStocks: getStocks,
-    getStock: getStock
+    getStock: getStock,
+    getFormattedStock: getFormattedStock
   }
 }])
